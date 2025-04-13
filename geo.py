@@ -3,7 +3,8 @@ import requests
 def get_coordinates(city_name):
     url = "https://nominatim.openstreetmap.org/search" # OpenStreetMap (via Nominatim)
     params = {"q": city_name, "format": "json"}
-    response = requests.get(url, params=params)
+    headers = {"User-Agent": "weather-app-example"}  # may work without it
+    response = requests.get(url, params=params,headers=headers)
     data = response.json()
     if not data:
         raise Exception("City not found")
